@@ -2,6 +2,12 @@ public class Notepad {
 
     Record[] records;
 
+    //Распечатать в консоль хранимые записи
+    public void printRecordsOnConsole(){
+        for (Record r : this.getRecords())
+            System.out.println(r.getData());
+    }
+
     public Notepad(Record[] records) {
         this.records = records;
     }
@@ -9,7 +15,7 @@ public class Notepad {
     public Notepad() {
     }
 
-    //Получить записи, хрнимые в болокноте
+    //Получить записи, хранимые в болокноте
     public Record[] getRecords() {
         return records;
     }
@@ -42,7 +48,7 @@ public class Notepad {
         this.addRecord(new Record(record));
     }
 
-    //Ударить запись
+    //Удалить запись
     public void deleteRecord(int indexToDelete)
     {
         //Если выход за границу диапазона
