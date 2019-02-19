@@ -47,7 +47,7 @@ public class Notepad {
     {
         //Проверяем выход за гарницу диапазона
         if ((indexToDelete < 0) || (indexToDelete > currentSize - 1)) {
-            throw  new IndexOutOfBoundsException("Выход за диапазон массива с записями");
+            throw  new IndexOutOfBoundsException("incorrect index");
         }
 
         //Проверяем, нужно ли уменьшить размер массива
@@ -71,7 +71,7 @@ public class Notepad {
     {
         //Проверяем выход за гарницу диапазона
         if ((index < 0) || (index > currentSize - 1)) {
-            throw  new IndexOutOfBoundsException("Выход за диапазон массива с записями");
+            throw  new IndexOutOfBoundsException("incorrect index");
         }
 
         notes[index] = newNote;
@@ -82,7 +82,7 @@ public class Notepad {
     {
         //Проверяем выход за гарницу диапазона
         if ((index < 0) || (index > currentSize - 1)) {
-            throw  new IndexOutOfBoundsException("Выход за диапазон массива с записями");
+            throw  new IndexOutOfBoundsException("incorrect index");
         }
 
         notes[index].setData(newText);
