@@ -1,11 +1,11 @@
-public class Record{
+public class Note {
 
     String data;
 
-    public Record() {
+    public Note() {
     }
 
-    public Record(String data) {
+    public Note(String data) {
 
         this.data = data;
     }

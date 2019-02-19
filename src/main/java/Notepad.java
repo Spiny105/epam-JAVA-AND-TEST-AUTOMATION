@@ -1,96 +1,90 @@
+import java.lang.reflect.Array;
+import java.util.Arrays;
+
 public class Notepad {
 
-    Record[] records;
+    private int currentSize;
+    private Note[] notes;
+
+    public Notepad() {
+        currentSize = 0;
+        notes = new Note[100];
+    }
 
     //Распечатать в консоль хранимые записи
     public void printRecordsOnConsole(){
-        for (Record r : this.getRecords())
-            System.out.println(r.getData());
-    }
-
-    public Notepad(Record[] records) {
-        this.records = records;
-    }
-
-    public Notepad() {
-    }
-
-    //Получить записи, хранимые в болокноте
-    public Record[] getRecords() {
-        return records;
+        for (int i = 0; i < currentSize; i++)
+            System.out.println(notes[i].getData());
     }
 
     //Добавить запись
-    public void addRecord(Record record)
+    public void addRecord(Note note)
     {
-        Record[] temp;
+        if (currentSize >= notes.length)
+        {
+            int newSize = notes.length + 100;
+            Note[] temp = new  Note[newSize];
 
-        if (records == null) {
-            temp = new Record[]{record};
+            System.arraycopy( notes, 0, temp, 0, notes.length );
+
+            temp[currentSize++] = note;
+            notes = temp;
         }
-        else {
-            temp = new Record[records.length + 1];
-
-            for (int i = 0; i < records.length; i++)
-            {
-                temp[i] = records[i];
-            }
-
-            temp[temp.length - 1] = record;
+        else
+        {
+            notes[currentSize++] = note;
         }
-
-        records = temp;
     }
 
     //Добавить запись
     public void addRecord(String record)
     {
-        this.addRecord(new Record(record));
+        this.addRecord(new Note(record));
     }
 
     //Удалить запись
     public void deleteRecord(int indexToDelete)
     {
-        //Если выход за границу диапазона
-        if ( (records == null) || (records.length - 1 < indexToDelete) || (indexToDelete < 0) ) {
-            return;
+        //Проверяем выход за гарницу диапазона
+        if ((indexToDelete < 0) || (indexToDelete > currentSize - 1)) {
+            throw  new IndexOutOfBoundsException("Выход за диапазон массива с записями");
         }
 
-        //Обработка случая, когда длянна массива равна 1
-        if (records.length == 1)
+        //Проверяем, нужно ли уменьшить размер массива
+        if ((currentSize % 100 == 0) && (currentSize > 100))
         {
-            records = null;
-            return;
+            int newSize = notes.length - 100;
+            Note[] temp = new Note[newSize];
+            System.arraycopy(notes, 0, temp, 0, indexToDelete);
+            System.arraycopy(notes, indexToDelete + 1, temp, indexToDelete, notes.length - indexToDelete);
         }
-
-        Record[] temp = new Record[records.length - 1];
-
-        for (int i = 0; i < indexToDelete; i++){
-            temp[i] = records[i];
-        }
-
-        for (int i = indexToDelete + 1; i < records.length; i++)
+        else
         {
-            temp[i - 1] = records[i];
+            System.arraycopy(notes, indexToDelete + 1, notes, indexToDelete, notes.length - 1 - indexToDelete);
         }
 
-        records = temp;
+        currentSize--;
     }
 
     //Редактировать запись
-    public void replaseRecord(Record newRecord, int index)
+    public void replaseRecord(Note newNote, int index)
     {
-        //Если выход за границу диапазона
-        if ( (records == null) || (records.length - 1 < index) || (index < 0) ) {
-            return;
+        //Проверяем выход за гарницу диапазона
+        if ((index < 0) || (index > currentSize - 1)) {
+            throw  new IndexOutOfBoundsException("Выход за диапазон массива с записями");
         }
 
-        records[index] = newRecord;
+        notes[index] = newNote;
     }
 
     //Редактировать запись
-    public void replaseRecord(String newRecord, int index)
+    public void replaseRecord(String newText, int index)
     {
-        replaseRecord(new Record(newRecord), index);
+        //Проверяем выход за гарницу диапазона
+        if ((index < 0) || (index > currentSize - 1)) {
+            throw  new IndexOutOfBoundsException("Выход за диапазон массива с записями");
+        }
+
+        notes[index].setData(newText);
     }
 }
