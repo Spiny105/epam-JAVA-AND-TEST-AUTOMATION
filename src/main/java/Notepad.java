@@ -1,10 +1,11 @@
-import java.lang.reflect.Array;
-import java.util.Arrays;
-
 public class Notepad {
 
     private int currentSize;
     private Note[] notes;
+
+    public int getCurrentSize() {
+        return currentSize;
+    }
 
     public Notepad() {
         currentSize = 0;
@@ -18,28 +19,24 @@ public class Notepad {
     }
 
     //Добавить запись
-    public void addRecord(Note note)
+    public void addNote(Note note)
     {
         if (currentSize >= notes.length)
         {
             int newSize = notes.length + 100;
             Note[] temp = new  Note[newSize];
-
             System.arraycopy( notes, 0, temp, 0, notes.length );
-
-            temp[currentSize++] = note;
             notes = temp;
         }
-        else
-        {
-            notes[currentSize++] = note;
-        }
+
+        notes[currentSize++] = note;
+
     }
 
     //Добавить запись
-    public void addRecord(String record)
+    public void addNote(String record)
     {
-        this.addRecord(new Note(record));
+        this.addNote(new Note(record));
     }
 
     //Удалить запись

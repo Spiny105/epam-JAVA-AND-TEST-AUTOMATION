@@ -6,7 +6,7 @@ public class Main {
         Notepad notepad = new Notepad();
 
         //Проверка удаления одной записис из начала блокнота
-        notepad.addRecord("Тестовая запись ");
+        notepad.addNote("Тестовая запись ");
         notepad.printRecordsOnConsole();
         System.out.println("===== После удаления тестовой записи ====");
         notepad.deleteRecord(0);
@@ -14,7 +14,7 @@ public class Main {
 
         //Добавляем записи в
         for (int i = 0; i < 110; i++)
-            notepad.addRecord("Запись " + i);
+            notepad.addNote("Запись " + i);
 
         System.out.println("===== После добавления ====");
         notepad.printRecordsOnConsole();
