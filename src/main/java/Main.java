@@ -9,7 +9,7 @@ public class Main {
         notepad.addNote("Тестовая запись ");
         notepad.printRecordsOnConsole();
         System.out.println("===== После удаления тестовой записи ====");
-        notepad.deleteRecord(0);
+        notepad.deleteNote(0);
         notepad.printRecordsOnConsole();
 
         //Добавляем записи в
@@ -20,14 +20,14 @@ public class Main {
         notepad.printRecordsOnConsole();
 
         //Редактируем записи в блокноте
-        notepad.replaseRecord(new Note("Редактируем запись 2"), 2);
+        notepad.replaseNote(new Note("Редактируем запись 2"), 2);
 
         System.out.println("===== После редактирования ====");
         notepad.printRecordsOnConsole();
 
         //Удаляем запись из блокнота
         for (int i = 0; i < 30; i++)
-            notepad.deleteRecord(3);
+            notepad.deleteNote(3);
 
         System.out.println("===== После удаления ====");
         notepad.printRecordsOnConsole();

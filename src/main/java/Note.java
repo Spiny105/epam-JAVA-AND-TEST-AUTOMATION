@@ -1,8 +1,9 @@
 public class Note {
 
-    String data;
+    private String data;
 
     public Note() {
+        data = "";
     }
 
     public Note(String data) {

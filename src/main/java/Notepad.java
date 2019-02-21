@@ -40,7 +40,7 @@ public class Notepad {
     }
 
     //Удалить запись
-    public void deleteRecord(int indexToDelete)
+    public void deleteNote(int indexToDelete)
     {
         //Проверяем выход за гарницу диапазона
         if ((indexToDelete < 0) || (indexToDelete > currentSize - 1)) {
@@ -64,7 +64,7 @@ public class Notepad {
     }
 
     //Редактировать запись
-    public void replaseRecord(Note newNote, int index)
+    public void replaseNote(Note newNote, int index)
     {
         //Проверяем выход за гарницу диапазона
         if ((index < 0) || (index > currentSize - 1)) {
@@ -75,7 +75,7 @@ public class Notepad {
     }
 
     //Редактировать запись
-    public void replaseRecord(String newText, int index)
+    public void replaseNote(String newText, int index)
     {
         //Проверяем выход за гарницу диапазона
         if ((index < 0) || (index > currentSize - 1)) {
