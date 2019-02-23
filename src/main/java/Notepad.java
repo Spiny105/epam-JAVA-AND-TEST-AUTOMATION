@@ -3,22 +3,20 @@ public class Notepad {
     private int currentSize;
     private Note[] notes;
 
-    public int getCurrentSize() {
-        return currentSize;
-    }
-
     public Notepad() {
         currentSize = 0;
         notes = new Note[100];
     }
 
-    //Распечатать в консоль хранимые записи
-    public void printRecordsOnConsole(){
+    //Print notes in console
+    public void printNotesOnConsole(){
         for (int i = 0; i < currentSize; i++)
+        {
             System.out.println(notes[i].getData());
+        }
     }
 
-    //Добавить запись
+    //Add note in notepad
     public void addNote(Note note)
     {
         if (currentSize >= notes.length)
@@ -33,17 +31,20 @@ public class Notepad {
 
     }
 
-    //Добавить запись
+    public int getCurrentSize() {
+        return currentSize;
+    }
+
     public void addNote(String record)
     {
         this.addNote(new Note(record));
     }
 
-    //Удалить запись
     public void deleteNote(int indexToDelete)
     {
         //Проверяем выход за гарницу диапазона
-        if ((indexToDelete < 0) || (indexToDelete > currentSize - 1)) {
+        if ((indexToDelete < 0) || (indexToDelete > currentSize - 1))
+        {
             throw  new IndexOutOfBoundsException("incorrect index");
         }
 
@@ -67,7 +68,8 @@ public class Notepad {
     public void replaseNote(Note newNote, int index)
     {
         //Проверяем выход за гарницу диапазона
-        if ((index < 0) || (index > currentSize - 1)) {
+        if ((index < 0) || (index > currentSize - 1))
+        {
             throw  new IndexOutOfBoundsException("incorrect index");
         }
 
@@ -78,7 +80,8 @@ public class Notepad {
     public void replaseNote(String newText, int index)
     {
         //Проверяем выход за гарницу диапазона
-        if ((index < 0) || (index > currentSize - 1)) {
+        if ((index < 0) || (index > currentSize - 1))
+        {
             throw  new IndexOutOfBoundsException("incorrect index");
         }
 
