@@ -3,25 +3,34 @@ public class Notepad {
     private int currentSize;
     private Note[] notes;
 
+    private static final int NOTEPAD_MINIMUM_SIZE = 100;
+
     public Notepad() {
         currentSize = 0;
-        notes = new Note[100];
+        notes = new Note[NOTEPAD_MINIMUM_SIZE];
     }
 
-    //Print notes in console
-    public void printNotesOnConsole(){
-        for (int i = 0; i < currentSize; i++)
-        {
-            System.out.println(notes[i].getData());
+    @Override
+    public String toString() {
+
+        final String SEPARATOR = "\n===================\n";
+
+        StringBuilder builder = new StringBuilder();
+        for (int i = 0; i < currentSize; i++) {
+            builder.append(SEPARATOR + notes[i].getHeader() + ": \n" + notes[i].getText() + SEPARATOR);
         }
+
+        return builder.toString();
     }
 
     //Add note in notepad
-    public void addNote(Note note)
-    {
-        if (currentSize >= notes.length)
-        {
-            int newSize = notes.length + 100;
+    public boolean addNote(Note note) {
+        if (note == null)
+            return false;
+
+        //Check for the need to resize the array
+        if (currentSize >= notes.length) {
+            int newSize = notes.length + NOTEPAD_MINIMUM_SIZE;
             Note[] temp = new  Note[newSize];
             System.arraycopy( notes, 0, temp, 0, notes.length );
             notes = temp;
@@ -29,62 +38,64 @@ public class Notepad {
 
         notes[currentSize++] = note;
 
+        return true;
     }
 
     public int getCurrentSize() {
         return currentSize;
     }
 
-    public void addNote(String record)
-    {
-        this.addNote(new Note(record));
+    public boolean addNote(String header, String text) {
+        return this.addNote(new Note(header, text));
     }
 
-    public void deleteNote(int indexToDelete)
-    {
-        //Проверяем выход за гарницу диапазона
-        if ((indexToDelete < 0) || (indexToDelete > currentSize - 1))
-        {
-            throw  new IndexOutOfBoundsException("incorrect index");
+    public boolean deleteNote(int indexToDelete) {
+        //Array out of range check
+        if ((indexToDelete < 0) || (indexToDelete > currentSize - 1)) {
+            return false;
         }
 
-        //Проверяем, нужно ли уменьшить размер массива
-        if ((currentSize % 100 == 0) && (currentSize > 100))
-        {
-            int newSize = notes.length - 100;
+        //Check for the need to resize the array
+        if ((currentSize % NOTEPAD_MINIMUM_SIZE == 0) && (currentSize > NOTEPAD_MINIMUM_SIZE)){
+            int newSize = notes.length - NOTEPAD_MINIMUM_SIZE;
             Note[] temp = new Note[newSize];
             System.arraycopy(notes, 0, temp, 0, indexToDelete);
             System.arraycopy(notes, indexToDelete + 1, temp, indexToDelete, notes.length - indexToDelete);
+            notes = temp;
         }
-        else
-        {
+        else {
             System.arraycopy(notes, indexToDelete + 1, notes, indexToDelete, notes.length - 1 - indexToDelete);
         }
 
         currentSize--;
+
+        return true;
     }
 
-    //Редактировать запись
-    public void replaseNote(Note newNote, int index)
+    public boolean replaseNote(Note newNote, int index)
     {
-        //Проверяем выход за гарницу диапазона
-        if ((index < 0) || (index > currentSize - 1))
-        {
-            throw  new IndexOutOfBoundsException("incorrect index");
+        if (newNote == null) {
+            return false;
+        }
+
+        //Array out of range check
+        if ((index < 0) || (index > currentSize - 1)) {
+            return false;
         }
 
         notes[index] = newNote;
+
+        return true;
     }
 
-    //Редактировать запись
-    public void replaseNote(String newText, int index)
-    {
-        //Проверяем выход за гарницу диапазона
-        if ((index < 0) || (index > currentSize - 1))
-        {
-            throw  new IndexOutOfBoundsException("incorrect index");
+    public boolean replaseNote(String newHeader, String newText, int index) {
+        //Array out of range check
+        if ((index < 0) || (index > currentSize - 1)) {
+            return false;
         }
 
-        notes[index].setData(newText);
+        notes[index].setHeader(newHeader);
+        notes[index].setText(newText);
+        return true;
     }
 }
