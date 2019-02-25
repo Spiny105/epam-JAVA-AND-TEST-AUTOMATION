@@ -9,17 +9,22 @@ public class Note {
         this.header = header;
     }
 
+    public Note() {
+        text = "";
+        header = "";
+    }
+
+    @Override
+    public String toString() {
+        return this.getHeader() + ": \n" + this.getText();
+    }
+
     public String getHeader() {
         return header;
     }
 
     public void setHeader(String header) {
         this.header = header;
-    }
-
-    public Note() {
-        text = "";
-        header = "";
     }
 
     public String getText() {

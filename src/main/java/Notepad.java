@@ -10,23 +10,11 @@ public class Notepad {
         notes = new Note[NOTEPAD_MINIMUM_SIZE];
     }
 
-    @Override
-    public String toString() {
-
-        final String SEPARATOR = "\n===================\n";
-
-        StringBuilder builder = new StringBuilder();
-        for (int i = 0; i < currentSize; i++) {
-            builder.append(SEPARATOR + notes[i].getHeader() + ": \n" + notes[i].getText() + SEPARATOR);
-        }
-
-        return builder.toString();
-    }
-
     //Add note in notepad
     public boolean addNote(Note note) {
-        if (note == null)
+        if (note == null) {
             return false;
+        }
 
         //Check for the need to resize the array
         if (currentSize >= notes.length) {
@@ -43,6 +31,22 @@ public class Notepad {
 
     public int getCurrentSize() {
         return currentSize;
+    }
+
+    public Note[] getNotes(){
+        Note[] newArray = new Note[currentSize];
+        System.arraycopy(notes, 0, newArray, 0, currentSize);
+        return newArray;
+    }
+
+    public Note getNote(int index){
+
+        if ((index < 0) || (index > currentSize - 1))
+        {
+            return null;
+        }
+
+        return new Note(notes[index].getHeader(), notes[index].getText());
     }
 
     public boolean addNote(String header, String text) {
@@ -72,8 +76,7 @@ public class Notepad {
         return true;
     }
 
-    public boolean replaseNote(Note newNote, int index)
-    {
+    public boolean replaceNote(Note newNote, int index) {
         if (newNote == null) {
             return false;
         }
@@ -88,7 +91,7 @@ public class Notepad {
         return true;
     }
 
-    public boolean replaseNote(String newHeader, String newText, int index) {
+    public boolean replaceNote(String newHeader, String newText, int index) {
         //Array out of range check
         if ((index < 0) || (index > currentSize - 1)) {
             return false;
