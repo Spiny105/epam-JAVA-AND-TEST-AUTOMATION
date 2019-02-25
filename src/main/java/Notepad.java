@@ -41,8 +41,7 @@ public class Notepad {
 
     public Note getNote(int index){
 
-        if ((index < 0) || (index > currentSize - 1))
-        {
+        if ((index < 0) || (index > currentSize - 1)) {
             return null;
         }
 

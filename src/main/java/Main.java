@@ -6,16 +6,16 @@ public class Main {
 
         //Delete one note
         notepad.addNote("Test note","Some text");
-        for (Note n: notepad.getNotes()) {
-            System.out.println(n.toString());
+        for (Note note: notepad.getNotes()) {
+            System.out.println(note.toString());
         }
 
         if (!notepad.deleteNote(0)) {
             System.out.println("===== Error occurred ====");
         }
         System.out.println("===== After deleting test note ====");
-        for (Note n: notepad.getNotes()) {
-            System.out.println(n.toString());
+        for (Note note: notepad.getNotes()) {
+            System.out.println(note.toString());
         }
 
         //add 110 notes in notepad
@@ -26,8 +26,8 @@ public class Main {
         }
 
         System.out.println("===== After adding notes in notepad ====");
-        for (Note n: notepad.getNotes()) {
-            System.out.println(n.toString());
+        for (Note note: notepad.getNotes()) {
+            System.out.println(note.toString());
         }
 
         //Edit note 2
@@ -35,8 +35,8 @@ public class Main {
             System.out.println("===== Error occurred ====");
         }
         System.out.println("===== After editing note 2 in notepad ====");
-        for (Note n: notepad.getNotes()) {
-            System.out.println(n.toString());
+        for (Note note: notepad.getNotes()) {
+            System.out.println(note.toString());
         }
 
         //Delete las note
@@ -44,8 +44,8 @@ public class Main {
             System.out.println("===== Error occurred ====");
         }
         System.out.println("===== After deleting the last note ====");
-        for (Note n: notepad.getNotes()) {
-            System.out.println(n.toString());
+        for (Note note: notepad.getNotes()) {
+            System.out.println(note.toString());
         }
 
 
@@ -54,8 +54,8 @@ public class Main {
             System.out.println("===== Error occurred ====");
         }
         System.out.println("===== After deleting penultimate note ====");
-        for (Note n: notepad.getNotes()) {
-            System.out.println(n.toString());
+        for (Note note: notepad.getNotes()) {
+            System.out.println(note.toString());
         }
 
 
@@ -67,8 +67,8 @@ public class Main {
         }
 
         System.out.println("===== After removing 30 notes ====");
-        for (Note n: notepad.getNotes()) {
-            System.out.println(n.toString());
+        for (Note note: notepad.getNotes()) {
+            System.out.println(note.toString());
         }
 
         //Delete note with wrong index
@@ -76,8 +76,8 @@ public class Main {
         if (!notepad.deleteNote(200)) {
             System.out.println("===== Error occurred ====");
         }
-        for (Note n: notepad.getNotes()) {
-            System.out.println(n.toString());
+        for (Note note: notepad.getNotes()) {
+            System.out.println(note.toString());
         }
     }
 
