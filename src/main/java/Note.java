@@ -1,22 +1,38 @@
 public class Note {
 
-    private String data;
+    private String text;
+    private String header;
+
+    public Note(String header, String text) {
+
+        this.text = text;
+        this.header = header;
+    }
 
     public Note() {
-        data = "";
+        text = "";
+        header = "";
     }
 
-    public Note(String data) {
-
-        this.data = data;
+    @Override
+    public String toString() {
+        return this.getHeader() + ": \n" + this.getText();
     }
 
-    public String getData() {
-
-        return data;
+    public String getHeader() {
+        return header;
     }
 
-    public void setData(String data) {
-        this.data = data;
+    public void setHeader(String header) {
+        this.header = header;
+    }
+
+    public String getText() {
+
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
     }
 }
