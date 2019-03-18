@@ -4,7 +4,7 @@ public class TestClass {
         return intValue;
     }
 
-    //Лол азаза какиетословавкомментариях
+    //какиетословавкомментариях
     public void setIntValue(int intValue) {
         intValue = intValue;
     }
