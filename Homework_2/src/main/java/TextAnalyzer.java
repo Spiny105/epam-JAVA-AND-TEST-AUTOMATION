@@ -77,8 +77,7 @@ public class TextAnalyzer {
         }
     }
 
-    private static Map<String, Integer> wordsSearching(String text)
-    {
+    public static Map<String, Integer> wordsSearching(String text) {
         Map<String, Integer> result = new HashMap<String, Integer>();
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(text);

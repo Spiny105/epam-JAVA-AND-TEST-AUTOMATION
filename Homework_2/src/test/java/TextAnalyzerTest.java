@@ -1,35 +1,63 @@
-import java.io.IOException;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+
+import java.util.Map;
 
 import static org.junit.Assert.*;
 
 public class TextAnalyzerTest {
 
-    final String SOURCE_TEST_FILE_PATH = "C:\\Users\\leont\\IdeaProjects\\testcore\\Homework_2\\src\\main\\java\\TestClass.java";
-    final String DEST_BINARY_TEST_FILE_PATH = "C:\\Users\\leont\\IdeaProjects\\testcore\\Homework_2\\test_results\\Binary_write_test_result.txt";
-    final String DEST_STRING_TEST_FILE_PATH = "C:\\Users\\leont\\IdeaProjects\\testcore\\Homework_2\\test_results\\String_write_test_result.txt";
+    @Test
+    public void wordsSearchingIfElseTest() {
 
-    @org.junit.Before
-    public void setUp() throws Exception {
+        int expectedNumberOfWords = 2;
+        String text = "if{\n//some operators\n}\nelse{\nanother operators\n}";
+
+        Map<String, Integer> foundWords = TextAnalyzer.wordsSearching(text);
+
+        assertEquals("Wrong number of key words", foundWords.size(), expectedNumberOfWords);
     }
 
-    @org.junit.After
-    public void tearDown() throws Exception {
+    @Test
+    public void wordsSearchingKeyWordInTheMiddleOfAnotherWordTest() {
 
+        int expectedNumberOfWords = 0;
+        String text = "someClassSome keyWordForInAnotherWord";
+
+        Map<String, Integer> foundWords = TextAnalyzer.wordsSearching(text);
+
+        assertEquals("Wrong number of key words", foundWords.size(), expectedNumberOfWords);
     }
 
-    @org.junit.Test
-    public void analyzeAfterBinaryRead(){
-        try {
-            TextAnalyzer.analyzeAfterBinaryRead(SOURCE_TEST_FILE_PATH, DEST_BINARY_TEST_FILE_PATH);
-        }
-        catch (Exception e){}
+    @Test
+    public void wordsSearchingSemicolonTest() {
+
+        int expectedNumberOfWords = 3;
+        String text = ";implements; ;keyWordForInAnotherWord; ;;;;;;; \n;;;; public long";
+
+        Map<String, Integer> foundWords = TextAnalyzer.wordsSearching(text);
+
+        assertEquals("Wrong number of key words", foundWords.size(), expectedNumberOfWords);
+        assertTrue("Wrong word contains in collection", foundWords.containsKey("implements"));
+        assertTrue("Wrong word contains in collection", foundWords.containsKey("public"));
+        assertTrue("Wrong word contains in collection", foundWords.containsKey("long"));
     }
 
-    @org.junit.Test
-    public void analyzeAfterStringsRead() {
-        try {
-            TextAnalyzer.analyzeAfterStringsRead(SOURCE_TEST_FILE_PATH, DEST_STRING_TEST_FILE_PATH);
-        }
-        catch (Exception e){}
+    @Test
+    public void wordsSearchingAllWordsTest() {
+
+        int expectedNumberOfWords = 50;
+        String text = "byte short int long " +
+        "char float double if else switch case default boolean while " +
+        "do break continue for try catch finally throw throws " +
+        "private protected public import package class interface " +
+                "extends implements static final void abstract native " +
+        "new return this super synchronized volatile const goto " +
+             "instanceof enum assert transient strictfp ";
+
+        Map<String, Integer> foundWords = TextAnalyzer.wordsSearching(text);
+
+        assertEquals("Wrong number of key words", foundWords.size(), 50);
     }
 }
