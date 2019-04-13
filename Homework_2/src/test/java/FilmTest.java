@@ -95,4 +95,10 @@ public class FilmTest {
 
         assertEquals("Wrong number of actors", actorsToAdd, actorsCollectionInFilm);
     }
+
+    @Test
+    public void setNullNameTest(){
+        film = new Film(null);
+        assertEquals("Name is not empty","", film.getName().toString());
+    }
 }

@@ -8,7 +8,7 @@ public class Film implements Serializable{
     private List<Actor> actors = new ArrayList<>();
 
     public Film(String name) {
-        this.name = name;
+        setName(name);
     }
 
     public String getName() {
@@ -16,7 +16,7 @@ public class Film implements Serializable{
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.name = (name == null) ? ("") : (name);
     }
 
     public void addActor(Actor actor){
