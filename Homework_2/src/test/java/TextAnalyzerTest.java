@@ -16,7 +16,7 @@ public class TextAnalyzerTest {
 
         Map<String, Integer> foundWords = TextAnalyzer.wordsSearching(text);
 
-        assertEquals("Wrong number of key words", foundWords.size(), expectedNumberOfWords);
+        assertEquals("Wrong number of key words", expectedNumberOfWords, foundWords.size());
     }
 
     @Test
@@ -27,7 +27,7 @@ public class TextAnalyzerTest {
 
         Map<String, Integer> foundWords = TextAnalyzer.wordsSearching(text);
 
-        assertEquals("Wrong number of key words", foundWords.size(), expectedNumberOfWords);
+        assertEquals("Wrong number of key words", expectedNumberOfWords, foundWords.size());
     }
 
     @Test
@@ -38,7 +38,7 @@ public class TextAnalyzerTest {
 
         Map<String, Integer> foundWords = TextAnalyzer.wordsSearching(text);
 
-        assertEquals("Wrong number of key words", foundWords.size(), expectedNumberOfWords);
+        assertEquals("Wrong number of key words", expectedNumberOfWords, foundWords.size());
         assertTrue("Wrong word contains in collection", foundWords.containsKey("implements"));
         assertTrue("Wrong word contains in collection", foundWords.containsKey("public"));
         assertTrue("Wrong word contains in collection", foundWords.containsKey("long"));
@@ -58,6 +58,6 @@ public class TextAnalyzerTest {
 
         Map<String, Integer> foundWords = TextAnalyzer.wordsSearching(text);
 
-        assertEquals("Wrong number of key words", foundWords.size(), 50);
+        assertEquals("Wrong number of key words", expectedNumberOfWords, foundWords.size());
     }
 }

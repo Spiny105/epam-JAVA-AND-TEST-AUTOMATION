@@ -6,8 +6,8 @@ public class Actor implements Serializable {
     private String name;
 
     public Actor(String name, int age) {
-        this.age = age;
-        this.name = name;
+        setAge(age);
+        setName(name);
     }
 
     public int getAge() {
@@ -23,6 +23,6 @@ public class Actor implements Serializable {
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.name = (name == null) ? ("") : (name);
     }
 }

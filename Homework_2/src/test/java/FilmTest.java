@@ -14,7 +14,7 @@ public class FilmTest {
 
         String expectedName = "Armageddon";
         film = new Film(expectedName);
-        assertEquals("getName method failure", film.getName(), expectedName);
+        assertEquals("getName method failure", expectedName, film.getName());
     }
 
     @Test
@@ -23,7 +23,7 @@ public class FilmTest {
         String initialName = "Armageddon";
         film = new Film(initialName);
         film.setName(expectedName);
-        assertEquals("setName method failure", film.getName(), expectedName);
+        assertEquals("setName method failure", expectedName, film.getName());
     }
 
     @Test
@@ -36,8 +36,8 @@ public class FilmTest {
         film.addActor(actorToAdd);
         List<Actor> collectionAfterAdding = film.getActors();
 
-        assertEquals("More or less than one element was added", collectionAfterAdding.size(), initialNumberOfActors + 1);
-        assertTrue("The collection of actors does not contain the added element",collectionAfterAdding.contains(actorToAdd));
+        assertEquals("More or less than one element was added", initialNumberOfActors + 1, collectionAfterAdding.size());
+        assertTrue("The collection of actors does not contain the added element", collectionAfterAdding.contains(actorToAdd));
     }
 
     @Test
